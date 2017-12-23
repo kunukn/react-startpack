@@ -1,10 +1,27 @@
-import React, {PropTypes} from 'react';
+import React, { Component } from 'react';
+import './App.scss';
 
-export default class App extends React.Component {
+export default class App extends Component {
+
+  static defaultProps = {
+    data: 234
+  }
+
+  state = {};
+
+  onClick = event => {
+    const { clientX, clientY } = event.nativeEvent;
+    this.setState({
+      event: `(${clientX}), (${clientY})`,
+    });
+  };
+
   render() {
     return (
-      <div>
-        MyComponent
-      </div>);
+      <div className="app" onClick={this.onClick}>
+        click me {this.state.event}
+        <div className="app__content">content {this.props.data}</div>
+      </div>
+    );
   }
 }

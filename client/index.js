@@ -1,5 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM, { render } from 'react-dom';
 import App from './components/App';
+import './index.scss';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const props = {
+  data: 123
+}
+
+render(<App {...props} />, document.getElementById('root'));
