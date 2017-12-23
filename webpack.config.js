@@ -4,16 +4,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = (env = {}) => {
-  const isProd = env.production === true;
-  const nodeEnv = isProd ? 'production' : 'development';
-  console.log(nodeEnv);
+
+  console.log(env);
+  let doMinimize = false;
 
   const plugins = [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(nodeEnv),
-      },
-    }),
     new HtmlWebpackPlugin({
       template: './client/index.html',
       filename: 'index.html',
@@ -21,6 +16,32 @@ module.exports = (env = {}) => {
     }),
     new ExtractTextPlugin({ filename: '[name].bundle.css', allChunks: true }),
   ];
+
+  if (doMinimize) {
+    plugins.push(
+      new webpack.LoaderOptionsPlugin({ minimize: true, debug: false })
+    );
+    plugins.push(
+      new webpack.optimize.UglifyJsPlugin({
+        minimize: true,
+        compress: {
+          warnings: false,
+          screw_ie8: true,
+          conditionals: true,
+          unused: true,
+          comparisons: true,
+          sequences: true,
+          dead_code: true,
+          evaluate: true,
+          if_return: true,
+          join_vars: true
+        },
+        output: {
+          comments: false
+        }
+      })
+    );
+  }
 
   return {
     entry: {
@@ -31,8 +52,8 @@ module.exports = (env = {}) => {
       contentBase: './',
       noInfo: true,
       port: 3399,
-      compress: isProd,
-      inline: !isProd,
+      compress: false,
+      inline: true,
       //hot: !isProd,
     },
     output: {
@@ -40,7 +61,7 @@ module.exports = (env = {}) => {
       filename: '[name].js',
       chunkFilename: '[id].chunk.js',
       libraryTarget: 'umd',
-      library: 'app'
+      library: 'myLibrary'
     },
     module: {
       loaders: [

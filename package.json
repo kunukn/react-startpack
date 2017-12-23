@@ -6,9 +6,10 @@
   "author": "kunukn",
   "scripts": {
     "start": "npm run dev",
-    "dev": "webpack-dev-server --progress --config webpack.config.js",
-    "webpack-prod": "cross-env NODE_ENV=production webpack-dev-server --env.production",
-    "webpack-build": "cross-env NODE_ENV=production webpack --env.production"
+    "dev": "webpack-dev-server --env.dev --progress --config webpack.config.js",
+    "build": "webpack --config webpack.config.build.js",
+    "clean": "rimraf dist/*",
+    "minify": "uglifyjs dist/myLibrary.umd.js --config-file uglify.config.json --output dist/myLibrary.umd.min.js"
   },
   "license": "MIT",
   "files": [
@@ -38,8 +39,10 @@
     "extract-text-webpack-plugin": "*",
     "html-webpack-plugin": "*",
     "node-sass": "*",
+    "parallel-webpack": "^2.2.0",
     "react": "*",
     "react-dom": "*",
+    "rimraf": "^2.6.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.1",
     "webpack": "*",
