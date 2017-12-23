@@ -4,7 +4,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const createVariants = require('parallel-webpack').createVariants;
 
+const entry = './client/components/App.js';
+
 const plugins = [
+  new webpack.ProvidePlugin({
+    React: "React", react: "React", "window.react": "React", "window.React": "React"
+  }),
   new HtmlWebpackPlugin({
     template: './client/index.html',
     filename: 'index.html',
@@ -40,7 +45,7 @@ const plugins = [
 function createConfig(options) {
   return {
     entry: {
-      app: ['./client/index.js'],
+      app: [entry],
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
@@ -74,12 +79,17 @@ function createConfig(options) {
     resolve: {
       extensions: ['.js', '.jsx'],
     },
+    externals: {
+      "react": "React",
+      "react-dom": "ReactDOM",
+    }
   };
 }
 
 module.exports = createVariants(
   {
-    target: ['var', 'commonjs2', 'umd']
+    target: ['umd']
+    //target: ['var', 'commonjs2', 'umd']
   },
   createConfig
 );

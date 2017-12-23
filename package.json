@@ -21,16 +21,20 @@
       "env",
       "stage-2",
       "react"
-    ],
-    "plugins": [
-      "transform-class-properties",
-      "transform-object-rest-spread"
     ]
   },
+  "babel-plugins-already-used-by-state-2": [
+    "transform-class-properties",
+    "transform-object-rest-spread",
+    "transform-react-jsx"
+  ],
   "devDependencies": {
     "babel-core": "*",
     "babel-eslint": "*",
     "babel-loader": "*",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "*",
     "babel-preset-react": "*",
     "babel-preset-stage-2": "*",

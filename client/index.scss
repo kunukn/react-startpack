@@ -3,3 +3,14 @@ body {
   margin: 0;
   padding: 1rem;
 }
+
+.app {
+  font-size: 2rem;
+  padding: 1rem;
+  background-color: lightblue;
+  &__content{
+    padding: inherit;
+    font-size: inherit;
+    background-color: lightcoral;
+  }
+}
