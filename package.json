@@ -1,7 +1,7 @@
 {
   "name": "react-startpack",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/MyComponent.commonjs2.js",
   "repository": "git@github.com:kunukn/react-startpack.git",
   "author": "kunukn",
   "scripts": {
@@ -9,7 +9,7 @@
     "dev": "webpack-dev-server --env.dev --progress --config webpack.config.js",
     "build": "webpack --config webpack.config.build.js",
     "clean": "rimraf dist/*",
-    "minify": "uglifyjs dist/myLibrary.umd.js --config-file uglify.config.json --output dist/myLibrary.umd.min.js"
+    "minify": "uglifyjs dist/MyComponent.umd.js --config-file uglify.config.json --output dist/MyComponent.umd.min.js"
   },
   "license": "MIT",
   "files": [

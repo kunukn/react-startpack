@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class App extends Component {
+export default class MyComponent extends Component {
 
   static defaultProps = {
     data: 234
